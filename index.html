@@ -1,0 +1,2752 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Club d'Art Universitaire</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#4F46E5", secondary: "#8B5CF6" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+      font-family: 'Montserrat', sans-serif;
+      }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+      }
+      .custom-checkbox {
+      position: relative;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      }
+      .custom-checkbox input {
+      opacity: 0;
+      position: absolute;
+      }
+      .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 20px;
+      width: 20px;
+      background-color: #fff;
+      border: 2px solid #d1d5db;
+      border-radius: 4px;
+      transition: all 0.3s;
+      }
+      .custom-checkbox input:checked ~ .checkmark {
+      background-color: #4F46E5;
+      border-color: #4F46E5;
+      }
+      .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+      }
+      .custom-checkbox input:checked ~ .checkmark:after {
+      display: block;
+      }
+      .custom-checkbox .checkmark:after {
+      left: 6px;
+      top: 2px;
+      width: 6px;
+      height: 12px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+      }
+      .custom-switch {
+      position: relative;
+      display: inline-block;
+      width: 48px;
+      height: 24px;
+      }
+      .custom-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+      }
+      .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #e5e7eb;
+      transition: .4s;
+      border-radius: 24px;
+      }
+      .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+      }
+      input:checked + .slider {
+      background-color: #4F46E5;
+      }
+      input:checked + .slider:before {
+      transform: translateX(24px);
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <div
+        class="container mx-auto px-4 py-4 flex justify-between items-center"
+      >
+        <div class="flex items-center">
+          <h1 class="text-2xl font-['Pacifico'] text-primary">KALARA</h1>
+        </div>
+        <nav class="hidden md:flex space-x-8">
+          <a
+            href="#formations"
+            class="text-gray-700 hover:text-primary font-medium transition-colors"
+            >Formations</a
+          >
+          <a
+            href="#evenements"
+            class="text-gray-700 hover:text-primary font-medium transition-colors"
+            >Événements</a
+          >
+          <a
+            href="#realisations"
+            class="text-gray-700 hover:text-primary font-medium transition-colors"
+            >Réalisations</a
+          >
+          <a
+            href="#equipe"
+            class="text-gray-700 hover:text-primary font-medium transition-colors"
+            >Équipe</a
+          >
+          <a
+            href="#sponsors"
+            class="text-gray-700 hover:text-primary font-medium transition-colors"
+            >Sponsors</a
+          >
+          <a
+            href="#projets"
+            class="text-gray-700 hover:text-primary font-medium transition-colors"
+            >Projets</a
+          >
+          <a
+            href="#contact"
+            class="text-gray-700 hover:text-primary font-medium transition-colors"
+            >Contact</a
+          >
+        </nav>
+        <div class="md:hidden flex items-center">
+          <button
+            id="mobile-menu-button"
+            class="w-10 h-10 flex items-center justify-center text-gray-700"
+          >
+            <i class="ri-menu-line ri-lg"></i>
+          </button>
+        </div>
+      </div>
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-white shadow-lg absolute w-full"
+      >
+        <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+          <a
+            href="#formations"
+            class="text-gray-700 hover:text-primary font-medium py-2 transition-colors"
+            >Formations</a
+          >
+          <a
+            href="#evenements"
+            class="text-gray-700 hover:text-primary font-medium py-2 transition-colors"
+            >Événements</a
+          >
+          <a
+            href="#realisations"
+            class="text-gray-700 hover:text-primary font-medium py-2 transition-colors"
+            >Réalisations</a
+          >
+          <a
+            href="#equipe"
+            class="text-gray-700 hover:text-primary font-medium py-2 transition-colors"
+            >Équipe</a
+          >
+          <a
+            href="#sponsors"
+            class="text-gray-700 hover:text-primary font-medium py-2 transition-colors"
+            >Sponsors</a
+          >
+          <a
+            href="#projets"
+            class="text-gray-700 hover:text-primary font-medium py-2 transition-colors"
+            >Projets</a
+          >
+          <a
+            href="#contact"
+            class="text-gray-700 hover:text-primary font-medium py-2 transition-colors"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="w-full relative">
+      <div
+        class="w-full h-[600px]"
+        style="background-image: url('https://readdy.ai/api/search-image?query=artistic%20studio%20with%20paint%20brushes%2C%20canvases%2C%20and%20art%20supplies%20in%20a%20university%20setting%2C%20bright%20natural%20light%20coming%20through%20large%20windows%2C%20vibrant%20colors%2C%20creative%20atmosphere%2C%20modern%20art%20studio%2C%20high-quality%20professional%20photography&width=1920&height=600&seq=1&orientation=landscape'); background-size: cover; background-position: center;"
+      >
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"
+        ></div>
+        <div class="container mx-auto px-4 h-full flex items-center">
+          <div class="max-w-2xl text-white relative z-10">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">
+              Club d'Art Universitaire
+            </h1>
+            <p class="text-lg md:text-xl mb-8">
+              Explorez votre créativité et développez vos talents artistiques au
+              sein de notre communauté passionnée.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <a
+                href="#formations"
+                class="bg-primary text-white px-6 py-3 !rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap"
+                >Découvrir nos formations</a
+              >
+              <a
+                href="#contact"
+                class="bg-white text-primary px-6 py-3 !rounded-button font-medium hover:bg-gray-100 transition-colors whitespace-nowrap"
+                >Nous contacter</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Formations Section -->
+    <section id="formations" class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Nos Formations</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Découvrez notre large éventail de formations artistiques adaptées à
+            tous les niveaux, du débutant à l'expert.
+          </p>
+        </div>
+        <div class="mb-8 flex justify-center">
+          <div class="inline-flex bg-gray-100 p-1 !rounded-full">
+            <button
+              class="formation-filter px-4 py-2 !rounded-full text-sm font-medium bg-primary text-white whitespace-nowrap"
+              data-filter="all"
+            >
+              Tous
+            </button>
+            <button
+              class="formation-filter px-4 py-2 !rounded-full text-sm font-medium text-gray-700 hover:bg-gray-200 whitespace-nowrap"
+              data-filter="peinture"
+            >
+              Peinture
+            </button>
+            <button
+              class="formation-filter px-4 py-2 !rounded-full text-sm font-medium text-gray-700 hover:bg-gray-200 whitespace-nowrap"
+              data-filter="dessin"
+            >
+              Dessin
+            </button>
+            <button
+              class="formation-filter px-4 py-2 !rounded-full text-sm font-medium text-gray-700 hover:bg-gray-200 whitespace-nowrap"
+              data-filter="bd"
+            >
+              BD
+            </button>
+            <button
+              class="formation-filter px-4 py-2 !rounded-full text-sm font-medium text-gray-700 hover:bg-gray-200 whitespace-nowrap"
+              data-filter="bodypaint"
+            >
+              Body Paint
+            </button>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div
+            class="formation-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+            data-category="peinture"
+          >
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=acrylic%20painting%20workshop%20with%20students%20working%20on%20canvases%2C%20bright%20studio%20with%20art%20supplies%2C%20focused%20students%20learning%20painting%20techniques%2C%20vibrant%20colors%2C%20professional%20art%20education%20setting&width=600&height=400&seq=2&orientation=landscape"
+                alt="Peinture acrylique"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <span
+                class="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full"
+                >Peinture</span
+              >
+              <h3 class="text-xl font-bold mt-3 mb-2">
+                Techniques de Peinture Acrylique
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Apprenez les fondamentaux de la peinture acrylique et développez
+                votre propre style à travers des exercices pratiques.
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-500">Durée: 10 semaines</span>
+                <a
+                  href="#"
+                  class="text-primary font-medium hover:underline flex items-center"
+                >
+                  En savoir plus
+                  <i class="ri-arrow-right-line ml-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="formation-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+            data-category="dessin"
+          >
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=portrait%20drawing%20class%20with%20students%20sketching%20models%2C%20professional%20drawing%20studio%20with%20easels%2C%20charcoal%20and%20pencil%20drawings%2C%20focused%20art%20students%2C%20natural%20lighting%2C%20university%20art%20department&width=600&height=400&seq=3&orientation=landscape"
+                alt="Portrait au crayon"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <span
+                class="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full"
+                >Dessin</span
+              >
+              <h3 class="text-xl font-bold mt-3 mb-2">L'Art du Portrait</h3>
+              <p class="text-gray-600 mb-4">
+                Maîtrisez les techniques de dessin de portrait, de l'anatomie
+                faciale aux expressions, avec des modèles vivants.
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-500">Durée: 8 semaines</span>
+                <a
+                  href="#"
+                  class="text-primary font-medium hover:underline flex items-center"
+                >
+                  En savoir plus
+                  <i class="ri-arrow-right-line ml-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="formation-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+            data-category="bd"
+          >
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=comic%20book%20creation%20workshop%20with%20students%20drawing%20storyboards%2C%20colorful%20comic%20panels%20on%20tables%2C%20graphic%20novels%20and%20comic%20art%20supplies%2C%20creative%20atmosphere%2C%20professional%20comic%20artists%20teaching%20students&width=600&height=400&seq=4&orientation=landscape"
+                alt="Création de BD"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <span
+                class="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full"
+                >BD</span
+              >
+              <h3 class="text-xl font-bold mt-3 mb-2">
+                Création de Bande Dessinée
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Du scénario à l'encrage, apprenez toutes les étapes de création
+                d'une BD et réalisez votre propre histoire illustrée.
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-500">Durée: 12 semaines</span>
+                <a
+                  href="#"
+                  class="text-primary font-medium hover:underline flex items-center"
+                >
+                  En savoir plus
+                  <i class="ri-arrow-right-line ml-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="formation-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+            data-category="bodypaint"
+          >
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=body%20painting%20workshop%20with%20artists%20applying%20colorful%20designs%20on%20models%2C%20professional%20body%20paint%20supplies%2C%20artistic%20body%20art%20session%2C%20creative%20and%20respectful%20atmosphere%2C%20university%20art%20studio%20setting&width=600&height=400&seq=5&orientation=landscape"
+                alt="Body Painting"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <span
+                class="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full"
+                >Body Paint</span
+              >
+              <h3 class="text-xl font-bold mt-3 mb-2">
+                Initiation au Body Painting
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Découvrez l'art du body painting, les techniques de base et
+                avancées pour transformer le corps humain en œuvre d'art.
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-500">Durée: 6 semaines</span>
+                <a
+                  href="#"
+                  class="text-primary font-medium hover:underline flex items-center"
+                >
+                  En savoir plus
+                  <i class="ri-arrow-right-line ml-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="formation-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+            data-category="peinture"
+          >
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=watercolor%20painting%20class%20with%20students%20working%20on%20landscape%20paintings%2C%20watercolor%20supplies%20and%20paper%2C%20bright%20art%20studio%20with%20natural%20light%2C%20professional%20watercolor%20techniques%20being%20demonstrated%2C%20university%20art%20department&width=600&height=400&seq=6&orientation=landscape"
+                alt="Aquarelle"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <span
+                class="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full"
+                >Peinture</span
+              >
+              <h3 class="text-xl font-bold mt-3 mb-2">Magie de l'Aquarelle</h3>
+              <p class="text-gray-600 mb-4">
+                Explorez les techniques d'aquarelle, du mouillé sur mouillé aux
+                lavis, et créez des œuvres lumineuses et transparentes.
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-500">Durée: 8 semaines</span>
+                <a
+                  href="#"
+                  class="text-primary font-medium hover:underline flex items-center"
+                >
+                  En savoir plus
+                  <i class="ri-arrow-right-line ml-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="formation-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+            data-category="dessin"
+          >
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=digital%20art%20class%20with%20students%20working%20on%20tablets%20and%20computers%2C%20digital%20illustration%20software%20on%20screens%2C%20modern%20art%20studio%20with%20technology%2C%20professional%20digital%20artists%20teaching%20techniques%2C%20university%20digital%20art%20lab&width=600&height=400&seq=7&orientation=landscape"
+                alt="Art numérique"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <span
+                class="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full"
+                >Dessin</span
+              >
+              <h3 class="text-xl font-bold mt-3 mb-2">Art Numérique</h3>
+              <p class="text-gray-600 mb-4">
+                Initiez-vous à l'illustration numérique avec des logiciels
+                professionnels et créez des œuvres digitales impressionnantes.
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-500">Durée: 10 semaines</span>
+                <a
+                  href="#"
+                  class="text-primary font-medium hover:underline flex items-center"
+                >
+                  En savoir plus
+                  <i class="ri-arrow-right-line ml-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Événements Section -->
+    <section id="evenements" class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Nos Événements</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Participez à nos événements artistiques et expositions pour partager
+            votre passion et rencontrer d'autres artistes.
+          </p>
+        </div>
+        <div class="mb-12">
+          <h3 class="text-xl font-bold mb-6 text-center">Événements à venir</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div
+              class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+            >
+              <div class="h-48 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=art%20exhibition%20opening%20night%20with%20paintings%20displayed%20on%20gallery%20walls%2C%20people%20viewing%20artwork%2C%20elegant%20atmosphere%2C%20wine%20glasses%2C%20professional%20gallery%20lighting%2C%20university%20art%20gallery%20event&width=600&height=400&seq=8&orientation=landscape"
+                  alt="Exposition annuelle"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-6">
+                <div class="flex justify-between items-center mb-3">
+                  <span
+                    class="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full"
+                    >Exposition</span
+                  >
+                  <span class="text-sm text-gray-500">23 juin 2025</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Exposition Annuelle</h3>
+                <p class="text-gray-600 mb-4">
+                  Notre exposition annuelle présentant les meilleures œuvres des
+                  membres du club. Vernissage ouvert au public.
+                </p>
+                <div class="flex items-center text-gray-500 text-sm mb-4">
+                  <i class="ri-map-pin-line mr-2"></i>
+                  <span>Galerie Universitaire, Bâtiment des Arts</span>
+                </div>
+                <button
+                  type="button"
+                  class="block w-full bg-primary text-white text-center py-2 !rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap register-event-btn"
+                >
+                  S'inscrire
+                </button>
+                <!-- Modal -->
+                <div
+                  id="eventRegistrationModal"
+                  class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50"
+                >
+                  <div
+                    class="bg-white rounded-lg max-w-2xl w-full mx-4 relative"
+                  >
+                    <button
+                      type="button"
+                      class="absolute right-4 top-4 text-gray-500 hover:text-gray-700"
+                      id="closeEventModal"
+                    >
+                      <i class="ri-close-line ri-lg"></i>
+                    </button>
+                    <div class="p-6">
+                      <h3
+                        class="text-2xl font-bold mb-6"
+                        id="eventModalTitle"
+                      ></h3>
+                      <div
+                        class="mb-6 p-4 bg-gray-50 rounded-lg"
+                        id="eventDetails"
+                      >
+                        <div class="flex items-center text-gray-600 mb-2">
+                          <i class="ri-calendar-line mr-2"></i>
+                          <span id="eventDate"></span>
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                          <i class="ri-map-pin-line mr-2"></i>
+                          <span id="eventLocation"></span>
+                        </div>
+                      </div>
+                      <form id="eventRegistrationForm" class="space-y-4">
+                        <div>
+                          <label class="block text-gray-700 font-medium mb-2"
+                            >Nom complet</label
+                          >
+                          <input
+                            type="text"
+                            name="fullName"
+                            required
+                            class="w-full px-4 py-2 !rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50"
+                          />
+                        </div>
+                        <div>
+                          <label class="block text-gray-700 font-medium mb-2"
+                            >Email</label
+                          >
+                          <input
+                            type="email"
+                            name="email"
+                            required
+                            class="w-full px-4 py-2 !rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50"
+                          />
+                        </div>
+                        <div>
+                          <label class="block text-gray-700 font-medium mb-2"
+                            >Téléphone</label
+                          >
+                          <input
+                            type="tel"
+                            name="phone"
+                            required
+                            class="w-full px-4 py-2 !rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50"
+                          />
+                        </div>
+                        <div>
+                          <label class="block text-gray-700 font-medium mb-2"
+                            >Type de participation</label
+                          >
+                          <select
+                            name="participationType"
+                            required
+                            class="w-full px-4 py-2 !rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50"
+                          >
+                            <option value="">Sélectionnez une option</option>
+                            <option value="participant">Participant</option>
+                            <option value="exposant">Exposant</option>
+                            <option value="benevole">Bénévole</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label class="block text-gray-700 font-medium mb-2"
+                            >Besoins particuliers</label
+                          >
+                          <textarea
+                            name="specialNeeds"
+                            rows="3"
+                            class="w-full px-4 py-2 !rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50"
+                            placeholder="Si vous avez des besoins particuliers, merci de nous en informer"
+                          ></textarea>
+                        </div>
+                        <div class="flex items-center">
+                          <label class="custom-checkbox">
+                            <input
+                              type="checkbox"
+                              name="termsAccepted"
+                              required
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+                          <span class="ml-2 text-sm text-gray-600"
+                            >J'accepte les conditions de participation à
+                            l'événement</span
+                          >
+                        </div>
+                        <button
+                          type="submit"
+                          class="w-full bg-primary text-white py-3 !rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap"
+                        >
+                          Confirmer l'inscription
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <!-- Confirmation Modal -->
+                <div
+                  id="registrationConfirmationModal"
+                  class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50"
+                >
+                  <div
+                    class="bg-white rounded-lg max-w-md w-full mx-4 p-6 text-center"
+                  >
+                    <div
+                      class="w-16 h-16 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center"
+                    >
+                      <i class="ri-check-line ri-2x text-green-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">
+                      Inscription confirmée !
+                    </h3>
+                    <p class="text-gray-600 mb-6">
+                      Votre inscription a été enregistrée avec succès. Vous
+                      recevrez un email de confirmation avec tous les détails.
+                    </p>
+                    <button
+                      type="button"
+                      class="bg-primary text-white px-6 py-2 !rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap"
+                      id="closeConfirmationModal"
+                    >
+                      Fermer
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+            >
+              <div class="h-48 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=comic%20book%20convention%20with%20artists%20displaying%20their%20work%20at%20booths%2C%20comic%20book%20fans%20browsing%20publications%2C%20colorful%20comic%20art%20displays%2C%20bustling%20creative%20atmosphere%2C%20university%20campus%20comic%20convention&width=600&height=400&seq=9&orientation=landscape"
+                  alt="Festival BD"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-6">
+                <div class="flex justify-between items-center mb-3">
+                  <span
+                    class="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full"
+                    >Festival</span
+                  >
+                  <span class="text-sm text-gray-500">15 juillet 2025</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Festival de la BD</h3>
+                <p class="text-gray-600 mb-4">
+                  Une journée dédiée à la bande dessinée avec des ateliers, des
+                  rencontres d'auteurs et des dédicaces.
+                </p>
+                <div class="flex items-center text-gray-500 text-sm mb-4">
+                  <i class="ri-map-pin-line mr-2"></i>
+                  <span>Campus Central, Salle Polyvalente</span>
+                </div>
+                <button
+                  type="button"
+                  class="block w-full bg-primary text-white text-center py-2 !rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap register-event-btn"
+                >
+                  S'inscrire
+                </button>
+                <!-- Modal -->
+                <div
+                  id="eventRegistrationModal"
+                  class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50"
+                >
+                  <div
+                    class="bg-white rounded-lg max-w-2xl w-full mx-4 relative"
+                  >
+                    <button
+                      type="button"
+                      class="absolute right-4 top-4 text-gray-500 hover:text-gray-700"
+                      id="closeEventModal"
+                    >
+                      <i class="ri-close-line ri-lg"></i>
+                    </button>
+                    <div class="p-6">
+                      <h3
+                        class="text-2xl font-bold mb-6"
+                        id="eventModalTitle"
+                      ></h3>
+                      <div
+                        class="mb-6 p-4 bg-gray-50 rounded-lg"
+                        id="eventDetails"
+                      >
+                        <div class="flex items-center text-gray-600 mb-2">
+                          <i class="ri-calendar-line mr-2"></i>
+                          <span id="eventDate"></span>
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                          <i class="ri-map-pin-line mr-2"></i>
+                          <span id="eventLocation"></span>
+                        </div>
+                      </div>
+                      <form id="eventRegistrationForm" class="space-y-4">
+                        <div>
+                          <label class="block text-gray-700 font-medium mb-2"
+                            >Nom complet</label
+                          >
+                          <input
+                            type="text"
+                            name="fullName"
+                            required
+                            class="w-full px-4 py-2 !rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50"
+                          />
+                        </div>
+                        <div>
+                          <label class="block text-gray-700 font-medium mb-2"
+                            >Email</label
+                          >
+                          <input
+                            type="email"
+                            name="email"
+                            required
+                            class="w-full px-4 py-2 !rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50"
+                          />
+                        </div>
+                        <div>
+                          <label class="block text-gray-700 font-medium mb-2"
+                            >Téléphone</label
+                          >
+                          <input
+                            type="tel"
+                            name="phone"
+                            required
+                            class="w-full px-4 py-2 !rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50"
+                          />
+                        </div>
+                        <div>
+                          <label class="block text-gray-700 font-medium mb-2"
+                            >Type de participation</label
+                          >
+                          <select
+                            name="participationType"
+                            required
+                            class="w-full px-4 py-2 !rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50"
+                          >
+                            <option value="">Sélectionnez une option</option>
+                            <option value="participant">Participant</option>
+                            <option value="exposant">Exposant</option>
+                            <option value="benevole">Bénévole</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label class="block text-gray-700 font-medium mb-2"
+                            >Besoins particuliers</label
+                          >
+                          <textarea
+                            name="specialNeeds"
+                            rows="3"
+                            class="w-full px-4 py-2 !rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50"
+                            placeholder="Si vous avez des besoins particuliers, merci de nous en informer"
+                          ></textarea>
+                        </div>
+                        <div class="flex items-center">
+                          <label class="custom-checkbox">
+                            <input
+                              type="checkbox"
+                              name="termsAccepted"
+                              required
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+                          <span class="ml-2 text-sm text-gray-600"
+                            >J'accepte les conditions de participation à
+                            l'événement</span
+                          >
+                        </div>
+                        <button
+                          type="submit"
+                          class="w-full bg-primary text-white py-3 !rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap"
+                        >
+                          Confirmer l'inscription
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <!-- Confirmation Modal -->
+                <div
+                  id="registrationConfirmationModal"
+                  class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50"
+                >
+                  <div
+                    class="bg-white rounded-lg max-w-md w-full mx-4 p-6 text-center"
+                  >
+                    <div
+                      class="w-16 h-16 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center"
+                    >
+                      <i class="ri-check-line ri-2x text-green-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">
+                      Inscription confirmée !
+                    </h3>
+                    <p class="text-gray-600 mb-6">
+                      Votre inscription a été enregistrée avec succès. Vous
+                      recevrez un email de confirmation avec tous les détails.
+                    </p>
+                    <button
+                      type="button"
+                      class="bg-primary text-white px-6 py-2 !rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap"
+                      id="closeConfirmationModal"
+                    >
+                      Fermer
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+            >
+              <div class="h-48 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=body%20painting%20competition%20with%20artists%20working%20on%20models%2C%20colorful%20body%20art%20designs%2C%20judges%20evaluating%20work%2C%20audience%20watching%2C%20professional%20photography%20lighting%2C%20university%20arts%20festival&width=600&height=400&seq=10&orientation=landscape"
+                  alt="Concours Body Paint"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-6">
+                <div class="flex justify-between items-center mb-3">
+                  <span
+                    class="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full"
+                    >Concours</span
+                  >
+                  <span class="text-sm text-gray-500">5 août 2025</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">
+                  Concours de Body Painting
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  Compétition artistique où les participants créent des œuvres
+                  d'art vivantes sur des modèles volontaires.
+                </p>
+                <div class="flex items-center text-gray-500 text-sm mb-4">
+                  <i class="ri-map-pin-line mr-2"></i>
+                  <span>Amphithéâtre des Arts, Bâtiment Principal</span>
+                </div>
+                <button
+                  type="button"
+                  class="block w-full bg-primary text-white text-center py-2 !rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap register-event-btn"
+                >
+                  S'inscrire
+                </button>
+                <!-- Modal -->
+                <div
+                  id="eventRegistrationModal"
+                  class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50"
+                >
+                  <div
+                    class="bg-white rounded-lg max-w-2xl w-full mx-4 relative"
+                  >
+                    <button
+                      type="button"
+                      class="absolute right-4 top-4 text-gray-500 hover:text-gray-700"
+                      id="closeEventModal"
+                    >
+                      <i class="ri-close-line ri-lg"></i>
+                    </button>
+                    <div class="p-6">
+                      <h3
+                        class="text-2xl font-bold mb-6"
+                        id="eventModalTitle"
+                      ></h3>
+                      <div
+                        class="mb-6 p-4 bg-gray-50 rounded-lg"
+                        id="eventDetails"
+                      >
+                        <div class="flex items-center text-gray-600 mb-2">
+                          <i class="ri-calendar-line mr-2"></i>
+                          <span id="eventDate"></span>
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                          <i class="ri-map-pin-line mr-2"></i>
+                          <span id="eventLocation"></span>
+                        </div>
+                      </div>
+                      <form id="eventRegistrationForm" class="space-y-4">
+                        <div>
+                          <label class="block text-gray-700 font-medium mb-2"
+                            >Nom complet</label
+                          >
+                          <input
+                            type="text"
+                            name="fullName"
+                            required
+                            class="w-full px-4 py-2 !rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50"
+                          />
+                        </div>
+                        <div>
+                          <label class="block text-gray-700 font-medium mb-2"
+                            >Email</label
+                          >
+                          <input
+                            type="email"
+                            name="email"
+                            required
+                            class="w-full px-4 py-2 !rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50"
+                          />
+                        </div>
+                        <div>
+                          <label class="block text-gray-700 font-medium mb-2"
+                            >Téléphone</label
+                          >
+                          <input
+                            type="tel"
+                            name="phone"
+                            required
+                            class="w-full px-4 py-2 !rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50"
+                          />
+                        </div>
+                        <div>
+                          <label class="block text-gray-700 font-medium mb-2"
+                            >Type de participation</label
+                          >
+                          <select
+                            name="participationType"
+                            required
+                            class="w-full px-4 py-2 !rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50"
+                          >
+                            <option value="">Sélectionnez une option</option>
+                            <option value="participant">Participant</option>
+                            <option value="exposant">Exposant</option>
+                            <option value="benevole">Bénévole</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label class="block text-gray-700 font-medium mb-2"
+                            >Besoins particuliers</label
+                          >
+                          <textarea
+                            name="specialNeeds"
+                            rows="3"
+                            class="w-full px-4 py-2 !rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50"
+                            placeholder="Si vous avez des besoins particuliers, merci de nous en informer"
+                          ></textarea>
+                        </div>
+                        <div class="flex items-center">
+                          <label class="custom-checkbox">
+                            <input
+                              type="checkbox"
+                              name="termsAccepted"
+                              required
+                            />
+                            <span class="checkmark"></span>
+                          </label>
+                          <span class="ml-2 text-sm text-gray-600"
+                            >J'accepte les conditions de participation à
+                            l'événement</span
+                          >
+                        </div>
+                        <button
+                          type="submit"
+                          class="w-full bg-primary text-white py-3 !rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap"
+                        >
+                          Confirmer l'inscription
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <!-- Confirmation Modal -->
+                <div
+                  id="registrationConfirmationModal"
+                  class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50"
+                >
+                  <div
+                    class="bg-white rounded-lg max-w-md w-full mx-4 p-6 text-center"
+                  >
+                    <div
+                      class="w-16 h-16 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center"
+                    >
+                      <i class="ri-check-line ri-2x text-green-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">
+                      Inscription confirmée !
+                    </h3>
+                    <p class="text-gray-600 mb-6">
+                      Votre inscription a été enregistrée avec succès. Vous
+                      recevrez un email de confirmation avec tous les détails.
+                    </p>
+                    <button
+                      type="button"
+                      class="bg-primary text-white px-6 py-2 !rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap"
+                      id="closeConfirmationModal"
+                    >
+                      Fermer
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mb-12">
+          <h3 class="text-xl font-bold mb-6 text-center">
+            Lauréats de nos certifications
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white rounded-lg shadow-sm p-4 text-center">
+              <div class="w-24 h-24 mx-auto mb-4 overflow-hidden rounded-full">
+                <img
+                  src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20young%20female%20artist%20with%20paint%20brushes%2C%20creative%20and%20confident%20expression%2C%20neutral%20background%2C%20high%20quality%20portrait%20photography&width=200&height=200&seq=11&orientation=squarish"
+                  alt="Émilie Dubois"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <h4 class="font-bold">Émilie Dubois</h4>
+              <p class="text-sm text-gray-600 mb-2">
+                Certification Excellence en Peinture
+              </p>
+              <div class="flex justify-center">
+                <span
+                  class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full"
+                  >Mai 2025</span
+                >
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-4 text-center">
+              <div class="w-24 h-24 mx-auto mb-4 overflow-hidden rounded-full">
+                <img
+                  src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20young%20male%20artist%20with%20glasses%2C%20creative%20and%20confident%20expression%2C%20neutral%20background%2C%20high%20quality%20portrait%20photography&width=200&height=200&seq=12&orientation=squarish"
+                  alt="Thomas Leroy"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <h4 class="font-bold">Thomas Leroy</h4>
+              <p class="text-sm text-gray-600 mb-2">
+                Certification Maître Illustrateur BD
+              </p>
+              <div class="flex justify-center">
+                <span
+                  class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full"
+                  >Avril 2025</span
+                >
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-4 text-center">
+              <div class="w-24 h-24 mx-auto mb-4 overflow-hidden rounded-full">
+                <img
+                  src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20young%20female%20artist%20with%20colorful%20hair%2C%20creative%20and%20confident%20expression%2C%20neutral%20background%2C%20high%20quality%20portrait%20photography&width=200&height=200&seq=13&orientation=squarish"
+                  alt="Sophie Martin"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <h4 class="font-bold">Sophie Martin</h4>
+              <p class="text-sm text-gray-600 mb-2">
+                Certification Body Art Professionnel
+              </p>
+              <div class="flex justify-center">
+                <span
+                  class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full"
+                  >Mars 2025</span
+                >
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-4 text-center">
+              <div class="w-24 h-24 mx-auto mb-4 overflow-hidden rounded-full">
+                <img
+                  src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20young%20male%20artist%20with%20beard%2C%20creative%20and%20confident%20expression%2C%20neutral%20background%2C%20high%20quality%20portrait%20photography&width=200&height=200&seq=14&orientation=squarish"
+                  alt="Lucas Petit"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <h4 class="font-bold">Lucas Petit</h4>
+              <p class="text-sm text-gray-600 mb-2">
+                Certification Art Numérique Avancé
+              </p>
+              <div class="flex justify-center">
+                <span
+                  class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full"
+                  >Février 2025</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-6 text-center">
+            Galerie des événements passés
+          </h3>
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div class="rounded-lg overflow-hidden h-40 md:h-48 shadow-sm">
+              <img
+                src="https://readdy.ai/api/search-image?query=art%20workshop%20with%20students%20painting%20together%2C%20creative%20atmosphere%2C%20university%20art%20club%20event%2C%20bright%20colors%2C%20engaged%20participants&width=300&height=200&seq=15&orientation=landscape"
+                alt="Atelier de peinture"
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div class="rounded-lg overflow-hidden h-40 md:h-48 shadow-sm">
+              <img
+                src="https://readdy.ai/api/search-image?query=comic%20book%20signing%20event%20with%20artists%20and%20fans%2C%20comic%20books%20displayed%20on%20tables%2C%20university%20bookstore%20setting%2C%20enthusiastic%20atmosphere&width=300&height=200&seq=16&orientation=landscape"
+                alt="Dédicace BD"
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div class="rounded-lg overflow-hidden h-40 md:h-48 shadow-sm">
+              <img
+                src="https://readdy.ai/api/search-image?query=body%20painting%20showcase%20with%20colorful%20designs%20on%20models%2C%20artistic%20presentation%2C%20university%20art%20event%2C%20professional%20lighting&width=300&height=200&seq=17&orientation=landscape"
+                alt="Showcase Body Paint"
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div class="rounded-lg overflow-hidden h-40 md:h-48 shadow-sm">
+              <img
+                src="https://readdy.ai/api/search-image?query=art%20exhibition%20with%20paintings%20displayed%20on%20walls%2C%20visitors%20viewing%20artwork%2C%20university%20gallery%2C%20opening%20night%20atmosphere&width=300&height=200&seq=18&orientation=landscape"
+                alt="Exposition"
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div class="rounded-lg overflow-hidden h-40 md:h-48 shadow-sm">
+              <img
+                src="https://readdy.ai/api/search-image?query=portrait%20drawing%20competition%20with%20artists%20at%20easels%2C%20judges%20evaluating%20work%2C%20university%20art%20contest%2C%20focused%20participants&width=300&height=200&seq=19&orientation=landscape"
+                alt="Concours de portrait"
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div class="rounded-lg overflow-hidden h-40 md:h-48 shadow-sm">
+              <img
+                src="https://readdy.ai/api/search-image?query=art%20therapy%20workshop%20with%20students%20creating%20expressive%20artwork%2C%20supportive%20atmosphere%2C%20university%20wellness%20program%2C%20creative%20healing&width=300&height=200&seq=20&orientation=landscape"
+                alt="Atelier art-thérapie"
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div class="rounded-lg overflow-hidden h-40 md:h-48 shadow-sm">
+              <img
+                src="https://readdy.ai/api/search-image?query=outdoor%20painting%20session%20with%20students%20working%20on%20landscapes%2C%20university%20campus%20setting%2C%20sunny%20day%2C%20plein%20air%20painting&width=300&height=200&seq=21&orientation=landscape"
+                alt="Peinture en plein air"
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div class="rounded-lg overflow-hidden h-40 md:h-48 shadow-sm">
+              <img
+                src="https://readdy.ai/api/search-image?query=digital%20art%20showcase%20with%20artwork%20displayed%20on%20screens%2C%20technology%20and%20art%20fusion%2C%20university%20digital%20media%20event%2C%20modern%20presentation&width=300&height=200&seq=22&orientation=landscape"
+                alt="Exposition art numérique"
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Réalisations Section -->
+    <section id="realisations" class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Nos Réalisations</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Découvrez les créations artistiques de nos membres et les projets
+            collectifs de notre club.
+          </p>
+        </div>
+        <div class="mb-16">
+          <h3 class="text-xl font-bold mb-6">Nouvelles BD</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div
+              class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+            >
+              <div class="h-64 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=comic%20book%20cover%20art%20with%20superhero%20character%2C%20vibrant%20colors%2C%20dynamic%20composition%2C%20professional%20comic%20art%20style%2C%20high%20quality%20illustration&width=400&height=600&seq=23&orientation=portrait"
+                  alt="Les Gardiens du Temps"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-4">
+                <h4 class="font-bold mb-1">Les Gardiens du Temps</h4>
+                <p class="text-sm text-gray-600 mb-3">
+                  Une aventure épique à travers différentes époques historiques.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-xs text-gray-500">Par: Équipe BD</span>
+                  <a
+                    href="#"
+                    class="text-primary text-sm font-medium hover:underline"
+                    >Lire un extrait</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+            >
+              <div class="h-64 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=comic%20book%20cover%20art%20with%20fantasy%20characters%20in%20magical%20forest%2C%20vibrant%20colors%2C%20whimsical%20style%2C%20professional%20comic%20art%2C%20high%20quality%20illustration&width=400&height=600&seq=24&orientation=portrait"
+                  alt="Forêt des Mystères"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-4">
+                <h4 class="font-bold mb-1">La Forêt des Mystères</h4>
+                <p class="text-sm text-gray-600 mb-3">
+                  Un conte fantastique où la nature cache des secrets
+                  millénaires.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-xs text-gray-500"
+                    >Par: Atelier Fantastique</span
+                  >
+                  <a
+                    href="#"
+                    class="text-primary text-sm font-medium hover:underline"
+                    >Lire un extrait</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+            >
+              <div class="h-64 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=comic%20book%20cover%20art%20with%20sci-fi%20futuristic%20city%2C%20robots%20and%20humans%2C%20cyberpunk%20style%2C%20professional%20comic%20art%2C%20high%20quality%20illustration&width=400&height=600&seq=25&orientation=portrait"
+                  alt="Néo-Paris 2150"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-4">
+                <h4 class="font-bold mb-1">Néo-Paris 2150</h4>
+                <p class="text-sm text-gray-600 mb-3">
+                  Une vision futuriste de la capitale française dans un monde
+                  cyberpunk.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-xs text-gray-500"
+                    >Par: Collectif Futur</span
+                  >
+                  <a
+                    href="#"
+                    class="text-primary text-sm font-medium hover:underline"
+                    >Lire un extrait</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+            >
+              <div class="h-64 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=comic%20book%20cover%20art%20with%20detective%20noir%20style%2C%20mysterious%20character%20in%20trench%20coat%2C%20atmospheric%20lighting%2C%20professional%20comic%20art%2C%20high%20quality%20illustration&width=400&height=600&seq=26&orientation=portrait"
+                  alt="L'Énigme du Professeur"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-4">
+                <h4 class="font-bold mb-1">L'Énigme du Professeur</h4>
+                <p class="text-sm text-gray-600 mb-3">
+                  Un thriller universitaire mêlant mystère et histoire de l'art.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-xs text-gray-500">Par: Club Polar</span>
+                  <a
+                    href="#"
+                    class="text-primary text-sm font-medium hover:underline"
+                    >Lire un extrait</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mb-16">
+          <h3 class="text-xl font-bold mb-6">Body Painting</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="rounded-lg overflow-hidden shadow-md">
+              <img
+                src="https://readdy.ai/api/search-image?query=artistic%20body%20painting%20with%20nature%20theme%2C%20leaves%20and%20flowers%20design%20on%20model%2C%20professional%20body%20art%20photography%2C%20artistic%20composition%2C%20tasteful%20and%20elegant&width=600&height=400&seq=27&orientation=landscape"
+                alt="Nature Vivante"
+                class="w-full h-64 object-cover"
+              />
+              <div class="p-4 bg-white">
+                <h4 class="font-bold">Nature Vivante</h4>
+                <p class="text-sm text-gray-600">
+                  Création inspirée par les motifs floraux et la symbiose avec
+                  la nature.
+                </p>
+              </div>
+            </div>
+            <div class="rounded-lg overflow-hidden shadow-md">
+              <img
+                src="https://readdy.ai/api/search-image?query=artistic%20body%20painting%20with%20cosmic%20theme%2C%20stars%20and%20galaxies%20design%20on%20model%2C%20professional%20body%20art%20photography%2C%20artistic%20composition%2C%20tasteful%20and%20elegant&width=600&height=400&seq=28&orientation=landscape"
+                alt="Cosmos"
+                class="w-full h-64 object-cover"
+              />
+              <div class="p-4 bg-white">
+                <h4 class="font-bold">Cosmos</h4>
+                <p class="text-sm text-gray-600">
+                  Exploration de l'univers et des constellations à travers le
+                  body painting.
+                </p>
+              </div>
+            </div>
+            <div class="rounded-lg overflow-hidden shadow-md">
+              <img
+                src="https://readdy.ai/api/search-image?query=artistic%20body%20painting%20with%20tribal%20theme%2C%20geometric%20patterns%20design%20on%20model%2C%20professional%20body%20art%20photography%2C%20artistic%20composition%2C%20tasteful%20and%20elegant&width=600&height=400&seq=29&orientation=landscape"
+                alt="Tribal Fusion"
+                class="w-full h-64 object-cover"
+              />
+              <div class="p-4 bg-white">
+                <h4 class="font-bold">Tribal Fusion</h4>
+                <p class="text-sm text-gray-600">
+                  Hommage aux motifs ancestraux et aux cultures traditionnelles.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-6">Portraits et Peintures</h3>
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div class="rounded-lg overflow-hidden shadow-sm">
+              <img
+                src="https://readdy.ai/api/search-image?query=realistic%20portrait%20painting%20of%20elderly%20person%20with%20character%2C%20oil%20painting%20technique%2C%20detailed%20facial%20features%2C%20professional%20art%2C%20museum%20quality&width=400&height=500&seq=30&orientation=portrait"
+                alt="Portrait 1"
+                class="w-full h-64 object-cover"
+              />
+            </div>
+            <div class="rounded-lg overflow-hidden shadow-sm">
+              <img
+                src="https://readdy.ai/api/search-image?query=impressionist%20style%20landscape%20painting%20with%20vibrant%20colors%2C%20nature%20scene%20with%20water%20reflection%2C%20professional%20art%2C%20museum%20quality&width=400&height=500&seq=31&orientation=portrait"
+                alt="Paysage"
+                class="w-full h-64 object-cover"
+              />
+            </div>
+            <div class="rounded-lg overflow-hidden shadow-sm">
+              <img
+                src="https://readdy.ai/api/search-image?query=abstract%20painting%20with%20bold%20colors%20and%20geometric%20shapes%2C%20modern%20art%20style%2C%20professional%20art%2C%20museum%20quality&width=400&height=500&seq=32&orientation=portrait"
+                alt="Abstrait"
+                class="w-full h-64 object-cover"
+              />
+            </div>
+            <div class="rounded-lg overflow-hidden shadow-sm">
+              <img
+                src="https://readdy.ai/api/search-image?query=surrealist%20painting%20with%20dreamlike%20elements%2C%20fantasy%20scene%2C%20professional%20art%2C%20museum%20quality&width=400&height=500&seq=33&orientation=portrait"
+                alt="Surréaliste"
+                class="w-full h-64 object-cover"
+              />
+            </div>
+            <div class="rounded-lg overflow-hidden shadow-sm">
+              <img
+                src="https://readdy.ai/api/search-image?query=charcoal%20portrait%20drawing%20of%20young%20woman%2C%20detailed%20shading%2C%20professional%20art%2C%20museum%20quality&width=400&height=500&seq=34&orientation=portrait"
+                alt="Portrait Fusain"
+                class="w-full h-64 object-cover"
+              />
+            </div>
+            <div class="rounded-lg overflow-hidden shadow-sm">
+              <img
+                src="https://readdy.ai/api/search-image?query=watercolor%20painting%20of%20urban%20scene%2C%20loose%20style%20with%20vibrant%20colors%2C%20professional%20art%2C%20museum%20quality&width=400&height=500&seq=35&orientation=portrait"
+                alt="Aquarelle Urbaine"
+                class="w-full h-64 object-cover"
+              />
+            </div>
+            <div class="rounded-lg overflow-hidden shadow-sm">
+              <img
+                src="https://readdy.ai/api/search-image?query=still%20life%20painting%20with%20fruits%20and%20flowers%2C%20classical%20style%2C%20professional%20art%2C%20museum%20quality&width=400&height=500&seq=36&orientation=portrait"
+                alt="Nature Morte"
+                class="w-full h-64 object-cover"
+              />
+            </div>
+            <div class="rounded-lg overflow-hidden shadow-sm">
+              <img
+                src="https://readdy.ai/api/search-image?query=mixed%20media%20artwork%20combining%20painting%20and%20collage%2C%20textured%20surface%2C%20professional%20art%2C%20museum%20quality&width=400&height=500&seq=37&orientation=portrait"
+                alt="Mixte"
+                class="w-full h-64 object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Équipe Section -->
+    <section id="equipe" class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Notre Équipe</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Découvrez les passionnés qui animent notre club d'art et partagent
+            leur expertise avec la communauté.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="h-64 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20female%20art%20professor%20in%20studio%2C%20confident%20and%20creative%2C%20artistic%20environment%20with%20paintings%20in%20background%2C%20high%20quality%20photography&width=400&height=500&seq=38&orientation=portrait"
+                alt="Claire Dupont"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="p-6 text-center">
+              <h3 class="text-xl font-bold mb-1">Claire Dupont</h3>
+              <p class="text-primary font-medium mb-3">Présidente</p>
+              <p class="text-gray-600 text-sm mb-4">
+                Professeure d'arts plastiques et artiste reconnue, Claire dirige
+                le club avec passion depuis 5 ans.
+              </p>
+              <div class="flex justify-center space-x-4">
+                <a
+                  href="#"
+                  class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary"
+                >
+                  <i class="ri-instagram-line"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary"
+                >
+                  <i class="ri-linkedin-line"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary"
+                >
+                  <i class="ri-mail-line"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="h-64 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20male%20comic%20book%20artist%20in%20studio%2C%20confident%20and%20creative%2C%20artistic%20environment%20with%20comic%20art%20in%20background%2C%20high%20quality%20photography&width=400&height=500&seq=39&orientation=portrait"
+                alt="Marc Leblanc"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="p-6 text-center">
+              <h3 class="text-xl font-bold mb-1">Marc Leblanc</h3>
+              <p class="text-primary font-medium mb-3">Responsable BD</p>
+              <p class="text-gray-600 text-sm mb-4">
+                Illustrateur professionnel, Marc partage sa passion pour la
+                bande dessinée et guide les futurs talents.
+              </p>
+              <div class="flex justify-center space-x-4">
+                <a
+                  href="#"
+                  class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary"
+                >
+                  <i class="ri-instagram-line"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary"
+                >
+                  <i class="ri-linkedin-line"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary"
+                >
+                  <i class="ri-mail-line"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="h-64 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20female%20body%20painting%20artist%20in%20studio%2C%20confident%20and%20creative%2C%20artistic%20environment%20with%20body%20art%20supplies%20in%20background%2C%20high%20quality%20photography&width=400&height=500&seq=40&orientation=portrait"
+                alt="Nathalie Moreau"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="p-6 text-center">
+              <h3 class="text-xl font-bold mb-1">Nathalie Moreau</h3>
+              <p class="text-primary font-medium mb-3">Experte Body Paint</p>
+              <p class="text-gray-600 text-sm mb-4">
+                Artiste de body painting primée, Nathalie transforme le corps
+                humain en toile vivante.
+              </p>
+              <div class="flex justify-center space-x-4">
+                <a
+                  href="#"
+                  class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary"
+                >
+                  <i class="ri-instagram-line"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary"
+                >
+                  <i class="ri-linkedin-line"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary"
+                >
+                  <i class="ri-mail-line"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="h-64 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20male%20digital%20artist%20in%20studio%2C%20confident%20and%20creative%2C%20artistic%20environment%20with%20digital%20art%20equipment%20in%20background%2C%20high%20quality%20photography&width=400&height=500&seq=41&orientation=portrait"
+                alt="Antoine Girard"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="p-6 text-center">
+              <h3 class="text-xl font-bold mb-1">Antoine Girard</h3>
+              <p class="text-primary font-medium mb-3">Responsable Digital</p>
+              <p class="text-gray-600 text-sm mb-4">
+                Spécialiste en art numérique, Antoine explore les nouvelles
+                technologies au service de la création.
+              </p>
+              <div class="flex justify-center space-x-4">
+                <a
+                  href="#"
+                  class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary"
+                >
+                  <i class="ri-instagram-line"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary"
+                >
+                  <i class="ri-linkedin-line"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary"
+                >
+                  <i class="ri-mail-line"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-8">
+          <h3 class="text-xl font-bold mb-6 text-center">Structure du Club</h3>
+          <div class="max-w-3xl mx-auto">
+            <div class="flex flex-col items-center mb-8">
+              <div
+                class="w-40 h-40 rounded-full bg-primary/10 flex items-center justify-center mb-4"
+              >
+                <i class="ri-team-line ri-3x text-primary"></i>
+              </div>
+              <h4 class="font-bold text-lg">Conseil d'Administration</h4>
+              <p class="text-gray-600 text-center mt-2">
+                Composé de 5 membres élus qui définissent les orientations
+                stratégiques du club
+              </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mb-4"
+                >
+                  <i class="ri-palette-line ri-2x text-primary"></i>
+                </div>
+                <h4 class="font-bold">Pôle Formations</h4>
+                <p class="text-gray-600 text-center mt-2">
+                  Organisation et animation des ateliers et cours
+                </p>
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mb-4"
+                >
+                  <i class="ri-calendar-event-line ri-2x text-primary"></i>
+                </div>
+                <h4 class="font-bold">Pôle Événements</h4>
+                <p class="text-gray-600 text-center mt-2">
+                  Planification et coordination des expositions et concours
+                </p>
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mb-4"
+                >
+                  <i class="ri-megaphone-line ri-2x text-primary"></i>
+                </div>
+                <h4 class="font-bold">Pôle Communication</h4>
+                <p class="text-gray-600 text-center mt-2">
+                  Promotion des activités et relations avec les partenaires
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Sponsors Section -->
+    <section id="sponsors" class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Nos Sponsors</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Nous remercions chaleureusement nos partenaires qui soutiennent nos
+            activités et projets artistiques.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-16">
+          <div
+            class="bg-white rounded-lg shadow-sm p-6 flex flex-col items-center"
+          >
+            <div class="w-16 h-16 flex items-center justify-center mb-4">
+              <i class="ri-paint-brush-fill ri-3x text-primary"></i>
+            </div>
+            <h3 class="font-bold text-center mb-2">ArtSupplies Pro</h3>
+            <p class="text-sm text-gray-600 text-center mb-4">
+              Fournisseur de matériel artistique de qualité professionnelle
+            </p>
+            <a href="#" class="text-primary text-sm font-medium hover:underline"
+              >Visiter le site</a
+            >
+          </div>
+          <div
+            class="bg-white rounded-lg shadow-sm p-6 flex flex-col items-center"
+          >
+            <div class="w-16 h-16 flex items-center justify-center mb-4">
+              <i class="ri-book-fill ri-3x text-primary"></i>
+            </div>
+            <h3 class="font-bold text-center mb-2">Éditions Créatives</h3>
+            <p class="text-sm text-gray-600 text-center mb-4">
+              Maison d'édition spécialisée dans les livres d'art et BD
+            </p>
+            <a href="#" class="text-primary text-sm font-medium hover:underline"
+              >Visiter le site</a
+            >
+          </div>
+          <div
+            class="bg-white rounded-lg shadow-sm p-6 flex flex-col items-center"
+          >
+            <div class="w-16 h-16 flex items-center justify-center mb-4">
+              <i class="ri-gallery-fill ri-3x text-primary"></i>
+            </div>
+            <h3 class="font-bold text-center mb-2">Galerie Moderne</h3>
+            <p class="text-sm text-gray-600 text-center mb-4">
+              Espace d'exposition partenaire pour nos événements
+            </p>
+            <a href="#" class="text-primary text-sm font-medium hover:underline"
+              >Visiter le site</a
+            >
+          </div>
+          <div
+            class="bg-white rounded-lg shadow-sm p-6 flex flex-col items-center"
+          >
+            <div class="w-16 h-16 flex items-center justify-center mb-4">
+              <i class="ri-bank-fill ri-3x text-primary"></i>
+            </div>
+            <h3 class="font-bold text-center mb-2">Fondation Arts & Culture</h3>
+            <p class="text-sm text-gray-600 text-center mb-4">
+              Soutien financier pour nos projets artistiques innovants
+            </p>
+            <a href="#" class="text-primary text-sm font-medium hover:underline"
+              >Visiter le site</a
+            >
+          </div>
+        </div>
+        <div class="bg-gray-50 rounded-lg p-8">
+          <h3 class="text-xl font-bold mb-6 text-center">Devenir Partenaire</h3>
+          <div class="max-w-2xl mx-auto">
+            <p class="text-gray-600 text-center mb-6">
+              Vous souhaitez soutenir notre club d'art et associer votre image à
+              la créativité et l'innovation ? Découvrez les avantages de devenir
+              partenaire.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div class="bg-white rounded-lg p-5 shadow-sm">
+                <div class="flex items-center mb-3">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-3"
+                  >
+                    <i class="ri-advertisement-line text-primary"></i>
+                  </div>
+                  <h4 class="font-bold">Visibilité</h4>
+                </div>
+                <p class="text-sm text-gray-600">
+                  Présence de votre logo sur nos supports de communication et
+                  lors de nos événements.
+                </p>
+              </div>
+              <div class="bg-white rounded-lg p-5 shadow-sm">
+                <div class="flex items-center mb-3">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-3"
+                  >
+                    <i class="ri-team-line text-primary"></i>
+                  </div>
+                  <h4 class="font-bold">Réseau</h4>
+                </div>
+                <p class="text-sm text-gray-600">
+                  Accès à notre communauté d'artistes et d'étudiants passionnés
+                  par l'art.
+                </p>
+              </div>
+              <div class="bg-white rounded-lg p-5 shadow-sm">
+                <div class="flex items-center mb-3">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-3"
+                  >
+                    <i class="ri-paint-brush-line text-primary"></i>
+                  </div>
+                  <h4 class="font-bold">Créativité</h4>
+                </div>
+                <p class="text-sm text-gray-600">
+                  Collaboration avec nos artistes pour des projets spécifiques à
+                  votre entreprise.
+                </p>
+              </div>
+              <div class="bg-white rounded-lg p-5 shadow-sm">
+                <div class="flex items-center mb-3">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-3"
+                  >
+                    <i class="ri-heart-line text-primary"></i>
+                  </div>
+                  <h4 class="font-bold">Impact</h4>
+                </div>
+                <p class="text-sm text-gray-600">
+                  Contribution au développement culturel et artistique de la
+                  communauté universitaire.
+                </p>
+              </div>
+            </div>
+            <div class="text-center">
+              <a
+                href="#contact"
+                class="bg-primary text-white px-6 py-3 !rounded-button font-medium hover:bg-primary/90 transition-colors inline-block whitespace-nowrap"
+                >Devenir partenaire</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Projets Futurs Section -->
+    <section id="projets" class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Nos Projets Futurs</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Découvrez les initiatives passionnantes que nous préparons pour les
+            mois à venir.
+          </p>
+        </div>
+        <div class="max-w-4xl mx-auto">
+          <div class="relative">
+            <!-- Timeline Line -->
+            <div
+              class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-primary/20"
+            ></div>
+            <!-- Timeline Items -->
+            <div class="mb-16 relative">
+              <div class="flex items-center justify-center mb-4">
+                <div
+                  class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white z-10"
+                >
+                  <i class="ri-calendar-line"></i>
+                </div>
+              </div>
+              <div class="bg-white rounded-lg shadow-md p-6 relative">
+                <div
+                  class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-sm font-bold bg-primary text-white px-4 py-1 rounded-full"
+                >
+                  Juin 2025
+                </div>
+                <h3 class="text-xl font-bold mb-3 mt-3 text-center">
+                  Festival d'Art Universitaire
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  Un événement majeur réunissant tous les clubs d'art des
+                  universités de la région pour une semaine de créativité et
+                  d'échanges.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="bg-gray-50 p-3 rounded">
+                    <h4 class="font-bold text-sm mb-2">Objectifs</h4>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                      <li class="flex items-start">
+                        <i class="ri-check-line text-primary mt-1 mr-2"></i>
+                        <span>Promouvoir l'art universitaire</span>
+                      </li>
+                      <li class="flex items-start">
+                        <i class="ri-check-line text-primary mt-1 mr-2"></i>
+                        <span>Créer des collaborations inter-universités</span>
+                      </li>
+                      <li class="flex items-start">
+                        <i class="ri-check-line text-primary mt-1 mr-2"></i>
+                        <span>Exposer les œuvres des étudiants</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="bg-gray-50 p-3 rounded">
+                    <h4 class="font-bold text-sm mb-2">Activités prévues</h4>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                      <li class="flex items-start">
+                        <i class="ri-check-line text-primary mt-1 mr-2"></i>
+                        <span>Expositions collectives</span>
+                      </li>
+                      <li class="flex items-start">
+                        <i class="ri-check-line text-primary mt-1 mr-2"></i>
+                        <span>Ateliers participatifs</span>
+                      </li>
+                      <li class="flex items-start">
+                        <i class="ri-check-line text-primary mt-1 mr-2"></i>
+                        <span>Conférences d'artistes</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mb-16 relative">
+              <div class="flex items-center justify-center mb-4">
+                <div
+                  class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white z-10"
+                >
+                  <i class="ri-calendar-line"></i>
+                </div>
+              </div>
+              <div class="bg-white rounded-lg shadow-md p-6 relative">
+                <div
+                  class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-sm font-bold bg-primary text-white px-4 py-1 rounded-full"
+                >
+                  Septembre 2025
+                </div>
+                <h3 class="text-xl font-bold mb-3 mt-3 text-center">
+                  Lancement de la Revue Artistique
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  Publication semestrielle présentant les créations des membres
+                  du club, des interviews d'artistes et des articles sur l'art
+                  contemporain.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="bg-gray-50 p-3 rounded">
+                    <h4 class="font-bold text-sm mb-2">Contenu</h4>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                      <li class="flex items-start">
+                        <i class="ri-check-line text-primary mt-1 mr-2"></i>
+                        <span>Portfolio des membres</span>
+                      </li>
+                      <li class="flex items-start">
+                        <i class="ri-check-line text-primary mt-1 mr-2"></i>
+                        <span>Entretiens avec des artistes</span>
+                      </li>
+                      <li class="flex items-start">
+                        <i class="ri-check-line text-primary mt-1 mr-2"></i>
+                        <span>Critiques d'expositions</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="bg-gray-50 p-3 rounded">
+                    <h4 class="font-bold text-sm mb-2">Distribution</h4>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                      <li class="flex items-start">
+                        <i class="ri-check-line text-primary mt-1 mr-2"></i>
+                        <span>Version imprimée limitée</span>
+                      </li>
+                      <li class="flex items-start">
+                        <i class="ri-check-line text-primary mt-1 mr-2"></i>
+                        <span>Version numérique accessible</span>
+                      </li>
+                      <li class="flex items-start">
+                        <i class="ri-check-line text-primary mt-1 mr-2"></i>
+                        <span>Diffusion dans les bibliothèques</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="relative">
+              <div class="flex items-center justify-center mb-4">
+                <div
+                  class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white z-10"
+                >
+                  <i class="ri-calendar-line"></i>
+                </div>
+              </div>
+              <div class="bg-white rounded-lg shadow-md p-6 relative">
+                <div
+                  class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-sm font-bold bg-primary text-white px-4 py-1 rounded-full"
+                >
+                  Janvier 2026
+                </div>
+                <h3 class="text-xl font-bold mb-3 mt-3 text-center">
+                  Création d'un Espace d'Art Permanent
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  Aménagement d'un espace dédié au sein de l'université pour
+                  exposer en permanence les œuvres des membres et organiser des
+                  événements artistiques.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="bg-gray-50 p-3 rounded">
+                    <h4 class="font-bold text-sm mb-2">
+                      Installations prévues
+                    </h4>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                      <li class="flex items-start">
+                        <i class="ri-check-line text-primary mt-1 mr-2"></i>
+                        <span>Galerie d'exposition</span>
+                      </li>
+                      <li class="flex items-start">
+                        <i class="ri-check-line text-primary mt-1 mr-2"></i>
+                        <span>Espace atelier collaboratif</span>
+                      </li>
+                      <li class="flex items-start">
+                        <i class="ri-check-line text-primary mt-1 mr-2"></i>
+                        <span>Zone de présentation multimédia</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="bg-gray-50 p-3 rounded">
+                    <h4 class="font-bold text-sm mb-2">Bénéfices</h4>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                      <li class="flex items-start">
+                        <i class="ri-check-line text-primary mt-1 mr-2"></i>
+                        <span>Visibilité permanente</span>
+                      </li>
+                      <li class="flex items-start">
+                        <i class="ri-check-line text-primary mt-1 mr-2"></i>
+                        <span>Lieu de rencontre artistique</span>
+                      </li>
+                      <li class="flex items-start">
+                        <i class="ri-check-line text-primary mt-1 mr-2"></i>
+                        <span>Valorisation des talents étudiants</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-12 text-center">
+            <h3 class="text-xl font-bold mb-4">
+              Restez informé de nos projets
+            </h3>
+            <div class="max-w-md mx-auto">
+              <div class="flex">
+                <input
+                  type="email"
+                  placeholder="Votre adresse email"
+                  class="flex-1 px-4 py-3 !rounded-l-button border-none focus:outline-none focus:ring-2 focus:ring-primary bg-white"
+                />
+                <button
+                  class="bg-primary text-white px-6 py-3 !rounded-r-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap"
+                >
+                  S'abonner
+                </button>
+              </div>
+              <p class="text-sm text-gray-500 mt-2">
+                Recevez nos actualités et soyez le premier informé de nos
+                nouveaux projets.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Contactez-nous</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Une question, une suggestion ou envie de rejoindre notre club ?
+            N'hésitez pas à nous contacter !
+          </p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div>
+            <form class="bg-white rounded-lg shadow-md p-8" id="whatsappForm">
+              <div class="mb-6">
+                <label for="name" class="block text-gray-700 font-medium mb-2"
+                  >Nom complet</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  class="w-full px-4 py-3 !rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50"
+                />
+              </div>
+              <div class="mb-6">
+                <label for="email" class="block text-gray-700 font-medium mb-2"
+                  >Email</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  class="w-full px-4 py-3 !rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50"
+                />
+              </div>
+              <div class="mb-6">
+                <label
+                  for="subject"
+                  class="block text-gray-700 font-medium mb-2"
+                  >Sujet</label
+                >
+                <div class="relative">
+                  <select
+                    id="subject"
+                    class="w-full px-4 py-3 !rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50 appearance-none pr-8"
+                  >
+                    <option value="">Sélectionnez un sujet</option>
+                    <option value="adhesion">Adhésion au club</option>
+                    <option value="formation">
+                      Informations sur les formations
+                    </option>
+                    <option value="evenement">
+                      Participation à un événement
+                    </option>
+                    <option value="partenariat">
+                      Proposition de partenariat
+                    </option>
+                    <option value="autre">Autre demande</option>
+                  </select>
+                  <div
+                    class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none"
+                  >
+                    <i class="ri-arrow-down-s-line text-gray-500"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-6">
+                <label
+                  for="message"
+                  class="block text-gray-700 font-medium mb-2"
+                  >Message</label
+                >
+                <textarea
+                  id="message"
+                  rows="5"
+                  class="w-full px-4 py-3 !rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50"
+                ></textarea>
+              </div>
+              <div class="mb-6 flex items-center">
+                <label class="custom-checkbox">
+                  <input type="checkbox" id="consent" />
+                  <span class="checkmark"></span>
+                </label>
+                <span class="ml-2 text-sm text-gray-600">
+                J'accepte que le club me contacte par email à tout moment pour m'informer de ses activités.
+                </span>
+
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-primary text-white py-3 !rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap"
+              >
+                Envoyer le message
+              </button>
+            </form>
+          </div>
+          <div>
+            <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+              <h3 class="text-xl font-bold mb-6">Informations de contact</h3>
+              <div class="space-y-4">
+                <div class="flex items-start">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-4 mt-1"
+                  >
+                    <i class="ri-map-pin-line text-primary"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold">Adresse</h4>
+                    <p class="text-gray-600">
+                      Bâtiment des Arts, Campus Universitaire<br />123 Avenue
+                      des Études, 75000 yaounde I
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-4 mt-1"
+                  >
+                    <i class="ri-mail-line text-primary"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold">Email</h4>
+                    <p class="text-gray-600">kalaracontact@gmail.comr</p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-4 mt-1"
+                  >
+                    <i class="ri-phone-line text-primary"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold">Téléphone</h4>
+                    <p class="text-gray-600">+237 655 22 65 17</p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-4 mt-1"
+                  >
+                    <i class="ri-time-line text-primary"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold">Horaires</h4>
+                    <p class="text-gray-600">
+                      Lundi - Vendredi: 10h - 18h<br />Samedi: 14h - 17h (sur
+                      rendez-vous)
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden h-64">
+              <div
+                class="w-full h-full"
+                style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png'); background-size: cover; background-position: center;"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+          <div>
+            <h3 class="text-xl font-['Pacifico'] mb-4">KALARA</h3>
+            <p class="text-gray-400 mb-4">
+              Le Club d'Art Universitaire est un espace de création,
+              d'apprentissage et de partage pour tous les passionnés d'art.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="w-8 h-8 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors"
+              >
+                <i class="ri-facebook-fill"></i>
+              </a>
+              <a
+                href="#"
+                class="w-8 h-8 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors"
+              >
+                <i class="ri-instagram-line"></i>
+              </a>
+              <a
+                href="#"
+                class="w-8 h-8 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors"
+              >
+                <i class="ri-twitter-x-line"></i>
+              </a>
+              <a
+                href="#"
+                class="w-8 h-8 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors"
+              >
+                <i class="ri-youtube-line"></i>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h3 class="font-bold text-lg mb-4">Liens rapides</h3>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#formations"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Formations</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#evenements"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Événements</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#realisations"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Réalisations</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#equipe"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Équipe</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#sponsors"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Sponsors</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#projets"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Projets</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-bold text-lg mb-4">Informations</h3>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Adhésion au club</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Calendrier des cours</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Règlement intérieur</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >FAQ</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Mentions légales</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Politique de confidentialité</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-bold text-lg mb-4">Newsletter</h3>
+            <p class="text-gray-400 mb-4">
+              Inscrivez-vous pour recevoir nos actualités et ne manquer aucun
+              événement.
+            </p>
+            <form>
+              <div class="flex mb-2">
+                <input
+                  type="email"
+                  placeholder="Votre email"
+                  class="flex-1 px-4 py-2 !rounded-l-button text-gray-900 border-none focus:outline-none"
+                />
+                <button
+                  type="submit"
+                  class="bg-primary text-white px-4 py-2 !rounded-r-button hover:bg-primary/90 transition-colors whitespace-nowrap"
+                >
+                  S'inscrire
+                </button>
+              </div>
+              <p class="text-xs text-gray-500">
+                En vous inscrivant, vous acceptez notre politique de
+                confidentialité.
+              </p>
+            </form>
+          </div>
+        </div>
+        <div
+          class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p class="text-gray-400 text-sm mb-4 md:mb-0">
+            © 2025 Club d'Art Universitaire. Tous droits réservés.
+          </p>
+          <div class="flex space-x-4">
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i class="ri-visa-line ri-lg"></i>
+            </div>
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i class="ri-mastercard-line ri-lg"></i>
+            </div>
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i class="ri-paypal-line ri-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script id="event-registration-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const registrationButtons = document.querySelectorAll(".register-event-btn");
+        const modal = document.getElementById("eventRegistrationModal");
+        const confirmationModal = document.getElementById(
+          "registrationConfirmationModal",
+        );
+        const closeModalBtn = document.getElementById("closeEventModal");
+        const closeConfirmationBtn = document.getElementById(
+          "closeConfirmationModal",
+        );
+        const registrationForm = document.getElementById("eventRegistrationForm");
+        function openModal(eventData) {
+          document.getElementById("eventModalTitle").textContent = eventData.title;
+          document.getElementById("eventDate").textContent = eventData.date;
+          document.getElementById("eventLocation").textContent = eventData.location;
+          modal.classList.remove("hidden");
+          modal.classList.add("flex");
+        }
+        function closeModal() {
+          modal.classList.add("hidden");
+          modal.classList.remove("flex");
+          registrationForm.reset();
+        }
+        function showConfirmation() {
+          confirmationModal.classList.remove("hidden");
+          confirmationModal.classList.add("flex");
+        }
+        function closeConfirmation() {
+          confirmationModal.classList.add("hidden");
+          confirmationModal.classList.remove("flex");
+        }
+        registrationButtons.forEach((button) => {
+          button.addEventListener("click", function (e) {
+            e.preventDefault();
+            const eventCard = this.closest(".bg-white");
+            const eventData = {
+              title: eventCard.querySelector("h3").textContent,
+              date: eventCard.querySelector(".text-gray-500").textContent,
+              location: eventCard.querySelector(".text-gray-500:last-child")
+                .textContent,
+            };
+            openModal(eventData);
+          });
+        });
+        closeModalBtn.addEventListener("click", closeModal);
+        closeConfirmationBtn.addEventListener("click", closeConfirmation);
+        modal.addEventListener("click", function (e) {
+          if (e.target === modal) {
+            closeModal();
+          }
+        });
+        confirmationModal.addEventListener("click", function (e) {
+          if (e.target === confirmationModal) {
+            closeConfirmation();
+          }
+        });
+        registrationForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          closeModal();
+          showConfirmation();
+        });
+      });
+    </script>
+    <script id="mobile-menu-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        mobileMenuButton.addEventListener("click", function () {
+          if (mobileMenu.classList.contains("hidden")) {
+            mobileMenu.classList.remove("hidden");
+          } else {
+            mobileMenu.classList.add("hidden");
+          }
+        });
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll("a");
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            mobileMenu.classList.add("hidden");
+          });
+        });
+      });
+    </script>
+    <script id="formation-filter-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const filterButtons = document.querySelectorAll(".formation-filter");
+        const formationCards = document.querySelectorAll(".formation-card");
+        // Formation details modal functionality
+        const formationDetails = {
+          "techniques-peinture-acrylique": {
+            title: "Techniques de Peinture Acrylique",
+            description:
+              "Une formation complète pour maîtriser les techniques de la peinture acrylique, de la préparation des supports aux finitions professionnelles.",
+            program: [
+              "Introduction aux matériaux et outils",
+              "Techniques de base et gestion de la matière",
+              "Mélanges de couleurs et harmonies",
+              "Textures et effets spéciaux",
+              "Composition et structure",
+              "Projets personnels guidés",
+            ],
+            skills: [
+              "Maîtrise des techniques de base et avancées",
+              "Compréhension de la théorie des couleurs",
+              "Capacité à créer des œuvres originales",
+              "Développement d'un style personnel",
+            ],
+            prerequisites: [
+              "Aucun prérequis artistique nécessaire",
+              "Matériel de base fourni pour les premiers cours",
+            ],
+            instructor: {
+              name: "Claire Dupont",
+              title: "Artiste professionnelle et enseignante",
+              experience: "15 ans d'expérience en peinture acrylique",
+            },
+            schedule: {
+              duration: "10 semaines",
+              sessions: "Mardi et Jeudi, 18h-20h",
+              startDate: "3 septembre 2025",
+            },
+            pricing: {
+              regular: "450€",
+              student: "380€",
+              materials: "Kit de base inclus",
+            },
+            image:
+              "https://readdy.ai/api/search-image?query=acrylic%20painting%20class%20with%20instructor%20demonstrating%20techniques%2C%20students%20working%20on%20canvases%2C%20art%20supplies%20and%20finished%20paintings%20visible%2C%20bright%20studio%20setting%2C%20professional%20art%20education&width=800&height=500&seq=42&orientation=landscape",
+          },
+        };
+        // Add modal HTML to the document
+        document.body.insertAdjacentHTML(
+          "beforeend",
+          `
+        <div id="formationDetailsModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 overflow-y-auto py-8">
+          <div class="bg-white rounded-lg max-w-4xl w-full mx-4 relative">
+            <button type="button" class="absolute right-4 top-4 text-gray-500 hover:text-gray-700" id="closeFormationModal">
+              <i class="ri-close-line ri-lg"></i>
+            </button>
+            <div class="p-6">
+              <div class="mb-6">
+                <img id="formationImage" class="w-full h-64 object-cover rounded-lg mb-4" src="" alt="">
+                <h3 id="formationTitle" class="text-2xl font-bold mb-2"></h3>
+                <p id="formationDescription" class="text-gray-600"></p>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <h4 class="font-bold mb-3">Programme</h4>
+                  <ul id="formationProgram" class="space-y-2 text-gray-600"></ul>
+                </div>
+                <div>
+                  <h4 class="font-bold mb-3">Compétences acquises</h4>
+                  <ul id="formationSkills" class="space-y-2 text-gray-600"></ul>
+                </div>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <h4 class="font-bold mb-3">Prérequis</h4>
+                  <ul id="formationPrerequisites" class="space-y-2 text-gray-600"></ul>
+                </div>
+                <div>
+                  <h4 class="font-bold mb-3">Formateur</h4>
+                  <div id="formationInstructor" class="text-gray-600"></div>
+                </div>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div>
+                  <h4 class="font-bold mb-3">Horaires</h4>
+                  <div id="formationSchedule" class="text-gray-600"></div>
+                </div>
+                <div>
+                  <h4 class="font-bold mb-3">Tarifs</h4>
+                  <div id="formationPricing" class="text-gray-600"></div>
+                </div>
+              </div>
+              <form id="formationRegistrationForm" class="space-y-4 border-t pt-6">
+                <h4 class="font-bold mb-4">Formulaire d'inscription</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-gray-700 font-medium mb-2">Nom complet</label>
+                    <input type="text" required class="w-full px-4 py-2 !rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50">
+                  </div>
+                  <div>
+                    <label class="block text-gray-700 font-medium mb-2">Email</label>
+                    <input type="email" required class="w-full px-4 py-2 !rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50">
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-gray-700 font-medium mb-2">Message (optionnel)</label>
+                  <textarea rows="3" class="w-full px-4 py-2 !rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-50"></textarea>
+                </div>
+                <div class="flex items-center">
+                  <label class="custom-checkbox">
+                    <input type="checkbox" required>
+                    <span class="checkmark"></span>
+                  </label>
+                  <span class="ml-2 text-sm text-gray-600">J'accepte les conditions de participation à la formation</span>
+                </div>
+                <button type="submit" class="w-full bg-primary text-white py-3 !rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap">S'inscrire à la formation</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      `,
+        );
+        // Formation modal functionality
+        const modal = document.getElementById("formationDetailsModal");
+        const closeModalBtn = document.getElementById("closeFormationModal");
+        const registrationForm = document.getElementById("formationRegistrationForm");
+        function openFormationModal(formationId) {
+          const formation = formationDetails[formationId];
+          if (!formation) return;
+          // Fill modal content
+          document.getElementById("formationImage").src = formation.image;
+          document.getElementById("formationTitle").textContent = formation.title;
+          document.getElementById("formationDescription").textContent =
+            formation.description;
+
+          document.getElementById("formationProgram").innerHTML = formation.program
+            .map(
+              (item) =>
+                `<li class="flex items-start"><i class="ri-check-line text-primary mt-1 mr-2"></i><span>${item}</span></li>`,
+            )
+            .join("");
+
+          document.getElementById("formationSkills").innerHTML = formation.skills
+            .map(
+              (item) =>
+                `<li class="flex items-start"><i class="ri-check-line text-primary mt-1 mr-2"></i><span>${item}</span></li>`,
+            )
+            .join("");
+
+          document.getElementById("formationPrerequisites").innerHTML =
+            formation.prerequisites
+              .map(
+                (item) =>
+                  `<li class="flex items-start"><i class="ri-check-line text-primary mt-1 mr-2"></i><span>${item}</span></li>`,
+              )
+              .join("");
+
+          document.getElementById("formationInstructor").innerHTML = `
+          <p class="font-medium">${formation.instructor.name}</p>
+          <p>${formation.instructor.title}</p>
+          <p>${formation.instructor.experience}</p>
+        `;
+
+          document.getElementById("formationSchedule").innerHTML = `
+          <p>Durée: ${formation.schedule.duration}</p>
+          <p>Sessions: ${formation.schedule.sessions}</p>
+          <p>Début: ${formation.schedule.startDate}</p>
+        `;
+
+          document.getElementById("formationPricing").innerHTML = `
+          <p>Tarif normal: ${formation.pricing.regular}</p>
+          <p>Tarif étudiant: ${formation.pricing.student}</p>
+          <p>Matériel: ${formation.pricing.materials}</p>
+        `;
+          modal.classList.remove("hidden");
+          modal.classList.add("flex");
+        }
+        function closeFormationModal() {
+          modal.classList.add("hidden");
+          modal.classList.remove("flex");
+          registrationForm.reset();
+        }
+        // Event listeners
+        document.querySelectorAll(".formation-card").forEach((card) => {
+          const learnMoreBtn = card.querySelector('a[href="#"]');
+          if (learnMoreBtn) {
+            learnMoreBtn.addEventListener("click", (e) => {
+              e.preventDefault();
+              openFormationModal("techniques-peinture-acrylique");
+            });
+          }
+        });
+        closeModalBtn.addEventListener("click", closeFormationModal);
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) closeFormationModal();
+        });
+        registrationForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          closeFormationModal();
+          // Show success message
+          const successModal = document.createElement("div");
+          successModal.className =
+            "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50";
+          successModal.innerHTML = `
+          <div class="bg-white rounded-lg max-w-md w-full mx-4 p-6 text-center">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
+              <i class="ri-check-line ri-2x text-green-500"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Inscription confirmée !</h3>
+            <p class="text-gray-600 mb-6">Votre inscription a été enregistrée avec succès. Vous recevrez un email de confirmation avec tous les détails.</p>
+            <button type="button" class="bg-primary text-white px-6 py-2 !rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap">Fermer</button>
+          </div>
+        `;
+          document.body.appendChild(successModal);
+
+          successModal.querySelector("button").addEventListener("click", () => {
+            successModal.remove();
+          });
+        });
+        filterButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            const filter = this.dataset.filter;
+            // Update active button
+            filterButtons.forEach((btn) => {
+              btn.classList.remove("bg-primary", "text-white");
+              btn.classList.add("text-gray-700", "hover:bg-gray-200");
+            });
+            this.classList.add("bg-primary", "text-white");
+            this.classList.remove("text-gray-700", "hover:bg-gray-200");
+            // Filter cards
+            formationCards.forEach((card) => {
+              if (filter === "all" || card.dataset.category === filter) {
+                card.style.display = "block";
+              } else {
+                card.style.display = "none";
+              }
+            });
+          });
+        });
+      });
+    </script>
+<script>
+  document.getElementById('whatsappForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // Empêche l'envoi traditionnel
+
+    // Récupération des champs
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value.trim();
+    const consent = document.getElementById('consent').checked;
+
+    // Vérification des champs obligatoires
+    if (!name || !email || !subject) {
+      alert("Veuillez remplir tous les champs obligatoires : nom, email et sujet.");
+      return;
+    }
+
+    if (!consent) {
+      alert("Veuillez accepter de recevoir des informations sur les activités du club.");
+      return;
+    }
+
+    // Numéro WhatsApp sans + ni 00
+    const phoneNumber = "237677305982";
+
+    // Construction du message
+    const fullMessage = `Nom: ${name}\nEmail: ${email}\nSujet: ${subject}\nMessage: ${message || "Aucun message précisé."}`;
+
+    // URL encodée
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(fullMessage)}`;
+
+    // Redirection
+    window.open(url, '_blank');
+  });
+</script>
+
+
+  </body>
+</html>
